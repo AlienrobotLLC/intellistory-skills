@@ -1,4 +1,4 @@
-<!-- Generated from the IntelliStory agent knowledge base (article `ag-pipelines`, last edited 2026-08-06). Do not edit here — edit the KB and rebuild. -->
+<!-- Generated from the IntelliStory agent knowledge base (article `ag-pipelines`, last edited 2026-08-16). Do not edit here — edit the KB and rebuild. -->
 # Pipelines — What Each Pass Writes
 
 The passes are ordered, and each one consumes what the last produced. Running

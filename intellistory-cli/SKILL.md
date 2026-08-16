@@ -75,6 +75,7 @@ success, 1 on failure (`--timeout 900` for long renders).
 intellistory upload ./takes/*.mp4 --shot sq010_sh0020 --pass-type previz     # versions on a shot
 intellistory upload ./board.png --shot sq010_sh0020 --pass-type storyboard
 intellistory upload ./moodboard/*.jpg --ref --category mood --tags night,rain # project references
+intellistory masters push sq010_sh0020 ./comp/sq010_sh0020.####.exr --colorspace acescg   # full-quality master (HDR/EXR) → straight to storage, see intellistory-masters
 intellistory upload ./cleo_front.png --character "Cleo"                       # onto a character
 intellistory download sq010_sh0020 -o ./renders/                              # newest version on the shot
 intellistory download <file_id> -o ./x.mp4        # a specific version;  --all for every version

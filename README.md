@@ -42,6 +42,7 @@ Claude Code: `claude mcp add intellistory --url https://api.intellistory.net/api
 | [`intellistory-generate`](intellistory-generate/SKILL.md) | render images, video, voice — estimate first, references, versions, the review loop |
 | [`intellistory-mentor`](intellistory-mentor/SKILL.md) | be guided through a whole production on a saved ten-phase plan |
 | [`intellistory-ingest`](intellistory-ingest/SKILL.md) | bring in scripts, references, renders, audio, or a whole archive |
+| [`intellistory-masters`](intellistory-masters/SKILL.md) | attach full-quality masters — HDR movies, EXR/DPX sequences — byte-exact push/pull, SDR preview caveats, specs from the file |
 
 Each skill names the tools it uses. Over MCP you call them directly; from a shell,
 `intellistory <tool> --option value` is the same call — the CLI reads the live tool registry,

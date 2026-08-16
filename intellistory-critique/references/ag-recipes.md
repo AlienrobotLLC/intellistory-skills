@@ -1,4 +1,4 @@
-<!-- Generated from the IntelliStory agent knowledge base (article `ag-recipes`, last edited 2026-07-28). Do not edit here — edit the KB and rebuild. -->
+<!-- Generated from the IntelliStory agent knowledge base (article `ag-recipes`, last edited 2026-08-16). Do not edit here — edit the KB and rebuild. -->
 # Recipes — Common Jobs End to End
 
 ## Start of any session on an existing project
