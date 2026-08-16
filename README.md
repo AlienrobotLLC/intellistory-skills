@@ -8,9 +8,6 @@ Skills are plain Markdown (`SKILL.md` + `references/`) that teach an AI coding a
 to use IntelliStory. They work in **Claude Code, Codex, Cursor, OpenClaw, Hermes, Gemini CLI**
 and any other agent that loads Markdown skills — no MCP required, though they use it when it's there.
 
-> **Status: being populated.** The install commands below already work; the first skills land
-> here as they're ready. Watch this repo or <https://intellistory.net/cli>.
-
 ## Install
 
 ```sh
@@ -33,26 +30,34 @@ Authorization: Bearer <your workspace key>
 
 Claude Code: `claude mcp add intellistory --url https://api.intellistory.net/api/mcp --header "Authorization: Bearer <key>"`
 
-## Planned skills
+## The skills
 
-| Skill | What it's for |
+| Skill | Use it when the user wants to… |
 |---|---|
-| `intellistory-story` | Develop a story from a spark: premise, characters, structure, beats |
-| `intellistory-critique` | Honest, structured feedback on a script or outline |
-| `intellistory-look` | Visual language: palette, composition, references, Director's Brief |
-| `intellistory-boards` | Breakdown → layout → storyboards |
-| `intellistory-generate` | Image / video / audio generation, with cost estimates first |
-| `intellistory-mentor` | Guided end-to-end production on a saved plan |
-| `intellistory-ingest` | Bring local media, scripts and references into a project |
-| `intellistory-cli` | Command reference for the `intellistory` CLI |
+| [`intellistory-cli`](intellistory-cli/SKILL.md) | reach IntelliStory at all — install, sign in, pick a project, call **any** tool, move files in and out, connect an agent. The others assume it. |
+| [`intellistory-story`](intellistory-story/SKILL.md) | develop a story: premise, characters, world, structure, beats, a tagged script |
+| [`intellistory-critique`](intellistory-critique/SKILL.md) | honest notes: Good / Bad / Ugly, unpaid setups, subtext, a simulated test screening |
+| [`intellistory-look`](intellistory-look/SKILL.md) | define the visual language: brief, palette, references, look variants, character sheets |
+| [`intellistory-boards`](intellistory-boards/SKILL.md) | go from script to boards: structure → breakdown → layout → beats/dialogue → boards → animatic |
+| [`intellistory-generate`](intellistory-generate/SKILL.md) | render images, video, voice — estimate first, references, versions, the review loop |
+| [`intellistory-mentor`](intellistory-mentor/SKILL.md) | be guided through a whole production on a saved ten-phase plan |
+| [`intellistory-ingest`](intellistory-ingest/SKILL.md) | bring in scripts, references, renders, audio, or a whole archive |
+
+Each skill names the tools it uses. Over MCP you call them directly; from a shell,
+`intellistory <tool> --option value` is the same call — the CLI reads the live tool registry,
+so nothing here goes stale when a tool is added.
+
+Agents: read [`INSTALL_FOR_AGENTS.md`](INSTALL_FOR_AGENTS.md). Golden prompts:
+[`evals/scenarios.md`](evals/scenarios.md).
 
 ## Layout
 
 ```
 <skill-name>/
-  SKILL.md          # frontmatter (name, description, allowed-tools) + instructions
-  references/       # supporting docs the skill points the agent at
+  SKILL.md          # frontmatter (name, description, version, allowed-tools) + instructions
+  references/       # ag-*.md — generated from IntelliStory's agent knowledge base (don't edit here)
 evals/              # golden prompts per skill
+.claude-plugin/ .codex-plugin/ .cursor-plugin/    # plugin manifests
 ```
 
 ## Contributing

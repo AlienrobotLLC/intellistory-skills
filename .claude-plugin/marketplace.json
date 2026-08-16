@@ -1,0 +1,22 @@
+{
+  "name": "intellistory",
+  "owner": { "name": "Alienrobot LLC", "url": "https://intellistory.net" },
+  "plugins": [
+    {
+      "name": "intellistory",
+      "source": "./",
+      "description": "IntelliStory for AI agents — story development, critique, look dev, breakdown/layout/boards, generation, guided production, ingest — via the intellistory CLI or MCP.",
+      "version": "0.1.0",
+      "skills": [
+        { "name": "cli",      "path": "intellistory-cli",      "invoke": "/intellistory:cli" },
+        { "name": "story",    "path": "intellistory-story",    "invoke": "/intellistory:story" },
+        { "name": "critique", "path": "intellistory-critique", "invoke": "/intellistory:critique" },
+        { "name": "look",     "path": "intellistory-look",     "invoke": "/intellistory:look" },
+        { "name": "boards",   "path": "intellistory-boards",   "invoke": "/intellistory:boards" },
+        { "name": "generate", "path": "intellistory-generate", "invoke": "/intellistory:generate" },
+        { "name": "mentor",   "path": "intellistory-mentor",   "invoke": "/intellistory:mentor" },
+        { "name": "ingest",   "path": "intellistory-ingest",   "invoke": "/intellistory:ingest" }
+      ]
+    }
+  ]
+}

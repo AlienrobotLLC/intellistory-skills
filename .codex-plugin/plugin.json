@@ -1,0 +1,16 @@
+{
+  "name": "intellistory",
+  "version": "0.1.0",
+  "description": "IntelliStory skills for AI agents: story development, critique, look development, breakdown/layout/storyboards, image/video/audio generation, guided production mentoring, and ingest — driven through the intellistory CLI or the IntelliStory MCP.",
+  "author": { "name": "Alienrobot LLC", "url": "https://intellistory.net" },
+  "homepage": "https://intellistory.net/cli",
+  "repository": "https://github.com/AlienrobotLLC/intellistory-skills",
+  "license": "MIT",
+  "keywords": ["intellistory", "filmmaking", "pre-production", "storyboard", "previz", "screenwriting", "look-development", "animatic", "ai-video", "ai-image"],
+  "skills": "./",
+  "interface": {
+    "displayName": "IntelliStory",
+    "shortDescription": "Develop stories, looks, boards and shots in IntelliStory",
+    "longDescription": "IntelliStory Skills turn Codex into a pre-production collaborator: develop a story from a spark to a tagged script, get structured critique, define the visual language, break a script into sequences and shots, run layout, board and render shots with cost estimates first, be mentored through a whole production, and ingest scripts, references and renders. Uses the intellistory CLI (or the IntelliStory MCP) for authenticated work and returns deep links into the project."
+  }
+}
