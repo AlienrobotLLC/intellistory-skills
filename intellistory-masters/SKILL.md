@@ -56,8 +56,9 @@ Rules the server enforces (say them rather than fight them):
 - Anyone with project access can push; deleting needs the uploader, a project owner, or a
   workspace admin.
 - `storage_not_configured` → the server has no masters bucket; `masters_cap` → the workspace
-  hit its allowance on IntelliStory's store — point them at Workspace → Integrations to
-  connect their own bucket (AWS S3 / B2 / Wasabi).
+  hit its allowance on IntelliStory's store — point them at Workspace → Integrations →
+  Buckets to connect their own bucket (AWS S3 / B2 / Wasabi) with the **Masters** role on
+  (`connect_org_bucket` roles.masters for agents; one key per bucket, roles Source/Masters/Export).
 
 ## Push over MCP only (no shell) — the contract
 

@@ -47,7 +47,7 @@ Rules the platform enforces, so don't try to work around them:
 | find a person the workspace already knows, for a picker | `search_org_users` |
 | see what admins did recently | `read_org_audit_log` |
 | move a project into another workspace | `move_project_to_workspace` (admin of both; episodes follow; audited on both sides) |
-| point the workspace's masters at its own bucket (BYO storage) | `set_org_storage` → `test_org_storage` (`get_org_integrations` to read, `remove_org_storage` to drop) |
+| connect a bucket the workspace owns (one key, roles source / masters / export) | `connect_org_bucket` → `test_org_bucket` (`list_org_buckets` / `get_org_integrations` to read, `disconnect_org_bucket` to drop). `set_org_storage` / `set_org_source` still work — they are wrappers that set one role. |
 | set a workspace-level model-provider key (e.g. fal) | `set_org_provider_key` |
 
 `add_org_member` only works for people who already have an IntelliStory account
@@ -58,17 +58,32 @@ instead: it emails a single-use link bound to that address (7 days) and can carr
 says `mail.sent: false`, mail isn't configured on that server — hand the returned
 `url` to the user to send themselves.
 
-## Bring-your-own storage (masters)
+## Connected buckets — one connection, one key, three roles
 
-A workspace can keep its full-quality masters (HDR movies, EXR sequences) in a
-bucket it owns — AWS S3, Backblaze B2, Wasabi or any S3-compatible endpoint.
-`set_org_storage` stores the config and sealed keys (never returned);
-`test_org_storage` runs a live probe (reach bucket, write/read/delete a probe
-object, presigned download, list, CORS) and only a passing test (`status: ok`)
-switches the workspace over. Everyday generations and the database are not
-affected — only masters. If a user asks how to prepare their bucket, point them
-at the runbook (Workspace → Integrations → Storage explains the IAM policy and
-CORS; the doc is `byo-storage-runbook`).
+A workspace connects a bucket it owns (AWS S3, Backblaze B2, Wasabi or any
+S3-compatible endpoint) **once**, with **one** key, and turns on what IntelliStory
+may do in it (`connect_org_bucket` … `roles`):
+
+| role | what it means | prefix |
+|---|---|---|
+| `source` | we **read in place** — art packs (`sync_art_packs`), source media, reference edits; nothing is written | e.g. `Scene_Bin/`, or empty for the whole bucket |
+| `masters` | we **write full-quality masters** there (HDR movies, EXR sequences) instead of the platform store | e.g. `intellistory/` — keep it out of production's own tree |
+| `export` | we **deliver / export** files there (approved takes, animatics, masters) | e.g. `intellistory-export/` |
+
+A client's production bucket is normally **source + export**; in-app storage
+(masters, generations) stays on the platform unless `masters` is turned on. Only
+one bucket per workspace may hold each role (the API answers 409 otherwise).
+Secrets are sealed and never returned; every change is in the audit log.
+`test_org_bucket` probes each enabled role (source → list; masters → write /
+read / presign / delete / CORS; export → write probe) and only a passing test
+(`status: ok`) makes the roles live.
+
+**Never re-paste a key an admin already stored.** If a job needs the bucket,
+resolve it *by role* — the platform does (`sync_art_packs` uses the source role,
+masters use the masters role). If nothing is connected, tell the human to
+connect it under Workspace → Integrations → Buckets (or do it once with
+`connect_org_bucket` and stop). If a user asks how to prepare their bucket, point
+them at the runbook (`byo-storage-runbook`).
 
 ## Crew management is privilege, not access
 

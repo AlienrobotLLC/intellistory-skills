@@ -12,7 +12,7 @@ Usage:
 Commands:
   login [--with-key <key>]               Sign in — opens the browser; `--with-key <key>` for headless machines
   logout                                 Forget the stored credential
-  whoami                                 Show the current credential, API and default project
+  whoami                                 Show the current credential, its workspace, visible projects and the default project
   projects [--archived]                  List projects you can reach
   use <project> | --clear                Set the default project (by code, name or id)
   tools [--search q]                     Browse every IntelliStory tool you can call (`intellistory <tool> …`)

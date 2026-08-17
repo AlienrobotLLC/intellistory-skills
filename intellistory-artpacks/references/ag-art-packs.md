@@ -1,4 +1,4 @@
-<!-- Generated from the IntelliStory agent knowledge base (article `ag-art-packs`). Do not edit here — edit the KB and rebuild. -->
+<!-- Generated from the IntelliStory agent knowledge base (article `ag-art-packs`, last edited 2026-08-16). Do not edit here — edit the KB and rebuild. -->
 # Art Packs — Production Reference Bundles
 
 An **art pack** is production's per-scene folder of cleared reference material —
@@ -17,7 +17,7 @@ the tools you already know do the work.
 | download originals (presigned, 1 h, from the client bucket; GET not HEAD) | `get_art_pack_download` (all / `file_id` / `category: "image"`) |
 | pull new packs / new files from the client bucket | `sync_art_packs(project_id)` |
 | fix a pack that landed in *Unassigned* | `map_art_pack(art_pack_id, sequence_id)` |
-| connect the client bucket (workspace admin) | `set_org_source` → `test_org_source` |
+| connect the client bucket (workspace admin — once, one key) | Workspace → Integrations → **Buckets** with the **Source** role on (prefix e.g. `Scene_Bin/`); agents: `connect_org_bucket({ roles: { source: { enabled: true, prefix } } })` → `test_org_bucket`. Never re-paste a stored key — `sync_art_packs` finds the bucket by its Source role. (`set_org_source` still works as a wrapper.) |
 
 ## Status is ours, not production's
 
@@ -68,5 +68,5 @@ say which you used.
 - Deleting a pack in IntelliStory removes our catalogue/asset/thumbnails only —
   the client's files are never touched.
 
-Related: `ag-generation` (refs), `ag-workspaces` (production source credential),
+Related: `ag-generation` (refs), `ag-workspaces` (connected buckets — Source role),
 `ag-masters` (masters are outputs; art packs are inputs).

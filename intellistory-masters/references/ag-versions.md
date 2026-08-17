@@ -1,4 +1,4 @@
-<!-- Generated from the IntelliStory agent knowledge base (article `ag-versions`, last edited 2026-08-14). Do not edit here — edit the KB and rebuild. -->
+<!-- Generated from the IntelliStory agent knowledge base (article `ag-versions`, last edited 2026-08-16). Do not edit here — edit the KB and rebuild. -->
 # Versions, Files and Sources
 
 Every render you produce becomes a version on a shot or an asset. Four fields
@@ -97,6 +97,54 @@ source. It cannot accept bytes.
 Refs are not attached at upload time: follow with
 `update_generated_file({ file_id, refs })` to cite what the version was made
 from.
+
+## Posters: slates and black heads are skipped automatically
+
+The poster (thumbnail + preview — what the timeline and shot tiles show) of an
+**uploaded / ingested video** is not blindly frame 0. At ingest the head of the
+clip is analysed:
+
+- a **static card that hard-cuts to picture** (a vendor slate, a leader) → the
+  poster is taken from the first clean picture frame after it;
+- a **blank head** (black or white fade-in) → same, first real picture frame;
+- otherwise → frame 0, exactly as before.
+
+Generated takes (renders the platform made itself) are not analysed — frame 0
+is what the artist expects for a 5-second AI clip.
+
+What gets recorded on the version, readable through `get_shot_files` /
+`get_asset_files` (`metadata`):
+
+```
+metadata.poster = { time_s, frame, reason: "default"|"slate_skipped"|"blank_head"|"manual",
+                    source: "auto"|"manual", at }
+metadata.slate  = { detected, kind: "none"|"slate"|"blank", head_frames, head_seconds,
+                    fps, frame_count, checked_at,
+                    ocr?: { is_slate, show, title, link, version_name, version,
+                            frame_range:{first,last}, date, artist, vendor, shot_type,
+                            submitted_for, submission_note, other_fields, raw_text },
+                    ocr_model?, ocr_provider?,
+                    mismatch?: [ { field: "link"|"frame_range"|"version", slate, expected, source } ] }
+```
+
+When the head is a slate the card is **OCR'd** (one small vision call) and its
+fields are **cross-checked** against what the file already claims: `link` vs the
+plate token in the filename and the shot name (`079_AFS_1400`), `frame_range`
+length vs the picture frames actually in the file, `version` vs any `_vNNNN` in
+the filename. Anything that disagrees lands in `mismatch[]` — that is the
+signal a delivery is mislabelled (wrong version, wrong shot folder). An empty
+`mismatch` with `ocr` present means the slate and the file agree. The OCR is
+tolerant of l/I/1 and O/0 confusions, so those never count as a mismatch.
+
+The submission note on a slate is captured verbatim in `ocr.submission_note` —
+it is usually the vendor's own change list for that version and is worth
+quoting when summarising a delivery.
+
+If the auto pick is wrong, `set_poster_frame({ file_id, time_s })` (or
+`{ file_id, frame }`, or `{ file_id, mode: "auto" }` to re-run detection)
+rewrites the poster and records `metadata.poster.source = "manual"`. It works on
+any video version, ingested or generated. Browsers may hold the old thumbnail for
+up to a day; the media proxy serves the new one immediately.
 
 ## Required fields
 

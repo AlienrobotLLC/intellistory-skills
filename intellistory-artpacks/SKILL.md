@@ -30,7 +30,7 @@ attached to the shots of its sequence**. So it behaves like any asset: `get_shot
 | index new packs / new files from the studio bucket | `sync_art_packs(project_id)` · `artpacks sync` |
 | a pack landed in *Unassigned* | `map_art_pack(art_pack_id, sequence_id)` · `artpacks map` |
 | download originals (presigned 1 h, from the studio bucket) | `get_art_pack_download` (all / `file_id` / `category:"image"`) · `artpacks pull <id> --category image` |
-| connect the studio bucket (workspace admin, read-only key) | `set_org_source` → `test_org_source` |
+| connect the studio bucket (workspace admin — once, one key) | Workspace → Integrations → **Buckets**, Source role on with the `Scene_Bin/`-style prefix; or `connect_org_bucket({ roles: { source: { enabled: true, prefix } } })` → `test_org_bucket`. Never re-paste a key an admin already stored — `sync_art_packs` finds the bucket by its Source role. |
 
 ## Status is IntelliStory's, not production's
 
