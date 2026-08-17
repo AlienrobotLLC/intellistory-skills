@@ -1,7 +1,7 @@
 {
   "name": "intellistory",
   "version": "0.1.0",
-  "description": "IntelliStory skills for AI agents: story development, critique, look development, breakdown/layout/storyboards, image/video/audio generation, guided production mentoring, ingest, and full-quality HDR/EXR masters — driven through the intellistory CLI or the IntelliStory MCP.",
+  "description": "IntelliStory skills for AI agents: story development, critique, look development, breakdown/layout/storyboards, image/video/audio generation, guided production mentoring, ingest, and full-quality HDR/EXR masters and production art packs — driven through the intellistory CLI or the IntelliStory MCP.",
   "author": { "name": "Alienrobot LLC", "url": "https://intellistory.net" },
   "homepage": "https://intellistory.net/cli",
   "repository": "https://github.com/AlienrobotLLC/intellistory-skills",

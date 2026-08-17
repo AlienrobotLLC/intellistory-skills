@@ -22,6 +22,7 @@ Commands:
   upload <file…> --shot S4-02            Put local renders, stills or audio into a project (as a shot version, on an asset, or as a reference)
   download <file_id|shot> [-o path]      Fetch a generated file (by file id, or the newest version on a shot)
   masters push|pull|list|delete          HDR movies / EXR sequences on shots — direct-to-storage push, verified pull
+  artpacks coverage|list|sync|show|pull|map Production art packs — coverage per sequence, sync from the source bucket, browse, pull originals
   open [project] [--shot <code>]         Open a project (or a shot) in the web app — default project if none given
   mcp                                    Run the stdio MCP proxy (for Claude Desktop, Codex, Hermes, …); adds the local stash_pasted_images tool
   setup <agent>                          Connect an agent: claude-code, claude-desktop, cursor, codex, gemini, hermes, openclaw

@@ -1,4 +1,4 @@
-<!-- Generated from the IntelliStory agent knowledge base (article `ag-generation`, last edited 2026-08-07). Do not edit here — edit the KB and rebuild. -->
+<!-- Generated from the IntelliStory agent knowledge base (article `ag-generation`, last edited 2026-08-16). Do not edit here — edit the KB and rebuild. -->
 # Generating Images, Video and Audio
 
 ## The shape of every generation
@@ -44,6 +44,16 @@ Every generation bills the account. Two consequences:
 `list_image_models` is the source of truth for pricing — it reflects what's
 actually configured. Don't quote prices from memory; they change, sometimes on
 promotion. `ag-billing.md` covers credits and who is exempt.
+
+Some models are offered on more than one host at different prices — Seedream
+4.5 / 5 Lite / 5 Pro, Nano Banana 2 / Pro, Qwen Image Edit Plus among them.
+`list_image_models` reports each entry's `host` and a shared `family` id for
+those. Treat a family as ONE model: don't offer the user "Seedream 5 Pro (host
+A)" and "Seedream 5 Pro (host B)" as if they were different renders. Pick the
+member with the lower `pricing` for the size you're rendering (some hosts are
+flat across resolutions; others double above 2K), pass that member's key. If the
+user has their own provider key configured, that host is free to their wallet —
+prefer it. The app's own model pickers do exactly this.
 
 ## Reference media
 

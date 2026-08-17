@@ -3,7 +3,7 @@
   "name": "intellistory",
   "displayName": "IntelliStory",
   "version": "0.1.0",
-  "description": "IntelliStory skills for AI agents: story development, critique, look development, breakdown/layout/storyboards, image/video/audio generation, guided production mentoring, ingest, and full-quality HDR/EXR masters — via the intellistory CLI or MCP.",
+  "description": "IntelliStory skills for AI agents: story development, critique, look development, breakdown/layout/storyboards, image/video/audio generation, guided production mentoring, ingest, and full-quality HDR/EXR masters and production art packs — via the intellistory CLI or MCP.",
   "author": { "name": "Alienrobot LLC" },
   "publisher": "AlienrobotLLC",
   "homepage": "https://intellistory.net/cli",

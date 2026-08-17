@@ -8,7 +8,7 @@
     {
       "name": "intellistory",
       "source": "./",
-      "description": "IntelliStory for AI agents \u2014 story development, critique, look dev, breakdown/layout/boards, generation, guided production, ingest, HDR/EXR masters \u2014 via the intellistory CLI or MCP.",
+      "description": "IntelliStory for AI agents \u2014 story development, critique, look dev, breakdown/layout/boards, generation, guided production, ingest, HDR/EXR masters, production art packs \u2014 via the intellistory CLI or MCP.",
       "version": "0.1.0",
       "skills": [
         {
@@ -55,6 +55,11 @@
           "name": "masters",
           "path": "intellistory-masters",
           "invoke": "/intellistory:masters"
+        },
+        {
+          "name": "artpacks",
+          "path": "intellistory-artpacks",
+          "invoke": "/intellistory:artpacks"
         }
       ]
     }
